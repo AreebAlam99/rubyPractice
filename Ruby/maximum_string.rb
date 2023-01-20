@@ -1,13 +1,17 @@
-def maximum_vaue_of_string(arr)
+def maximum_value_of_string(strs)
   max_value = 0
-  arr.each do |str|
-    if str.to_i.zero? && !str.chars.all? {|c| c == '0'}
+  strs.each do |str|
+    if str.match(/\A[0-9]+\z/)
+      max_value = str.to_i if str.to_i > max_value
+    elsif str.match(/\A[a-zA-z]+\z/)
       max_value = str.length if str.length > max_value
-    elsif str.to_i > max_value
-      max_value = str.to_i
+    elsif str.match(/\A[a-zA-Z0-9]*\z/)
+      max_value = str.length if str.length > max_value
     end
   end
   max_value
 end
 
-puts maximum_vaue_of_string(["3glko","1"])
+puts maximum_value_of_string(["1","01","001","0001"])
+# puts maximum_value_of_string(["3glko","1"])
+# puts maximum_value_of_string(["alic3","bob","3","4","00000"])
